@@ -1,13 +1,17 @@
 import React from 'react'
 import Register from './Register'
 import Login from './Login'
+import Sidebar from '../components/Sidebar'
+import Chat from '../components/Chat'
 
 const Home = () => {
     return (
-        <>
-            <Register />
-            <Login />
-        </ >
+        <div className='flex h-screen items-center justify-center bg-blue-200'>
+            <div className='flex border-2 p-5 rounded-xl border-white h-[80vh] w-[80vw]'>
+                <Sidebar />
+                <Chat />
+            </div>
+        </div>
     )
 }
 
