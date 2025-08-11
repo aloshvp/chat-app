@@ -1,89 +1,93 @@
-$violet: #5d5b8d;
-$lavender: #a7bcff;
+// $violet: #5d5b8d;
+// $lavender: #a7bcff;
 
-.formContainer {
-    background-color: $lavender;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+// .formContainer {
+//     background-color: $lavender;
+//     height: 100vh;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
 
-    .formWrapper {
-        background-color: #fff;
-        padding: 30px 60px;
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+//     .formWrapper {
+//         background-color: #fff;
+//         padding: 30px 60px;
+//         border-radius: 10px;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//         text-align: center;
 
-        * {
-            width: 100%;
-        }
+//         * {
+//             width: 100%;
+//         }
 
-        .logo {
-            color: $violet;
-            font-size: 28px;
-            line-height: 1.5em;
-            font-weight: bold;
-            margin: 0;
-        }
-
-
-        .title {
-            color: $violet;
-            font-size: 18px;
-            line-height: 1.5em;
-        }
+//         .logo {
+//             color: $violet;
+//             font-size: 28px;
+//             line-height: 1.5em;
+//             font-weight: bold;
+//             margin: 0;
+//         }
 
 
-        form {
-            margin: 20px 0 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 20px;
+//         .title {
+//             color: $violet;
+//             font-size: 18px;
+//             line-height: 1.5em;
+//         }
 
-            input {
-                padding: 6px;
-                border: none;
-                border-bottom: 1px solid #ddd;
-                height: 35px;
 
-                &:focus {
-                    outline: none;
-                    border-bottom: 1px solid $violet;
-                }
+//         form {
+//             margin: 20px 0 0;
+//             display: flex;
+//             justify-content: center;
+//             align-items: center;
+//             flex-direction: column;
+//             gap: 20px;
 
-                &[type="file"] {
-                    border-bottom: none;
-                }
+//             input {
+//                 padding: 6px;
+//                 border: none;
+//                 border-bottom: 1px solid #ddd;
+//                 height: 35px;
 
-                &::placeholder {
-                    color: #ada9a9;
-                    font-size: 14px;
-                    line-height: 1em;
-                }
-            }
+//                 &:focus {
+//                     outline: none;
+//                     border-bottom: 1px solid $violet;
+//                 }
 
-            button {
-                background-color: $lavender;
-                border: none;
-                padding: 10px;
-                border-radius: 10px;
-                color: #fff;
-                cursor: pointer;
-                border: 1px solid $lavender;
-                transition: all 0.3s ease;
+//                 &[type="file"] {
+//                     border-bottom: none;
+//                 }
 
-                &:hover {
-                    background-color: #fff;
-                    color: $lavender;
-                }
-            }
-        }
-    }
+//                 &::placeholder {
+//                     color: #ada9a9;
+//                     font-size: 14px;
+//                     line-height: 1em;
+//                 }
 
-}
+//                 &.fileInput {
+//                     display: none;
+//                 }
+//             }
+
+//             button {
+//                 background-color: $lavender;
+//                 border: none;
+//                 padding: 10px;
+//                 border-radius: 10px;
+//                 color: #fff;
+//                 cursor: pointer;
+//                 border: 1px solid $lavender;
+//                 transition: all 0.3s ease;
+
+//                 &:hover {
+//                     background-color: #fff;
+//                     color: $lavender;
+//                 }
+//             }
+//         }
+//     }
+
+// }
