@@ -17,9 +17,7 @@ const Search = () => {
                             <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input type="search" className="grow" placeholder="Find a user" />
-                    {/* <kbd className="kbd kbd-sm">⌘</kbd> */}
-                    {/* <kbd className="kbd kbd-sm">K</kbd> */}
+                    <input type="search" className="grow text-white placeholder-[#9da0ce]" placeholder="Find a user" />
                 </label>
             </div>
             {/* <div className='flex gap-4 flex-col border-t-1 border-[#9da0ce] p-5'>

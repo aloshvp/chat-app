@@ -5,11 +5,13 @@ import MessageBox from './MessageBox'
 
 const Chat = () => {
     return (
-        <div className='w-[60%] relative'>
+        <div className="w-full h-full flex flex-col">
             <ChatNavbar />
-            <Messages />
+            <div className="flex-1 overflow-y-auto">
+                <Messages />
+            </div>
             <MessageBox />
-        </div>
+        </div >
     )
 }
 

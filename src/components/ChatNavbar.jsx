@@ -3,10 +3,8 @@ import React from 'react'
 const ChatNavbar = () => {
     return (
         <div>
-            <div className='flex justify-between p-5 bg-[#C6CBEF] rounded-tr-lg items-center'>
-
+            <div class="flex items-center justify-between bg-white/10 px-4 py-3 border-b border-white/20">
                 <span className='text-lg text-[#201f21] font-medium'>Name</span>
-
                 <label className="swap swap-rotate">
                     {/* this hidden checkbox controls the state */}
                     <input type="checkbox" className="theme-controller" value="synthwave" />
@@ -30,7 +28,7 @@ const ChatNavbar = () => {
                     </svg>
                 </label>
             </div>
-        </div>
+        </div >
     )
 }
 
