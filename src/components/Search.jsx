@@ -18,8 +18,8 @@ const Search = () => {
                         </g>
                     </svg>
                     <input type="search" className="grow" placeholder="Find a user" />
-                    <kbd className="kbd kbd-sm">⌘</kbd>
-                    <kbd className="kbd kbd-sm">K</kbd>
+                    {/* <kbd className="kbd kbd-sm">⌘</kbd> */}
+                    {/* <kbd className="kbd kbd-sm">K</kbd> */}
                 </label>
             </div>
             {/* <div className='flex gap-4 flex-col border-t-1 border-[#9da0ce] p-5'>
