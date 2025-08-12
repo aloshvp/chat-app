@@ -12,7 +12,9 @@ function App() {
     const { currentUser, loading } = useContext(AuthContext);
 
     if (loading) {
-      return <div>Loading...</div>;
+      return <div>
+
+      </div>;
     }
 
     if (!currentUser) {
