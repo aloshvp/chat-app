@@ -8,14 +8,20 @@ import { AuthContext } from "./context/AuthContext";
 
 function App() {
 
-  const { currentUser } = useContext(AuthContext);
-
   const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
-      return <Navigate to="/login" replace />;
+    const { currentUser, loading } = useContext(AuthContext);
+
+    if (loading) {
+      return <div>Loading...</div>;
     }
+
+    if (!currentUser) {
+      return <Navigate to="/login" />;
+    }
+
     return children;
   };
+
 
   return (
     <BrowserRouter>

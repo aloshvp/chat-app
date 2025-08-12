@@ -28,7 +28,7 @@ const Chats = () => {
         <div>
             <div className="flex flex-col divide-y divide-[#9da0ce]/30">
                 {chatData.map((chat, i) => (
-                    <div key={i} class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition cursor-pointer">
+                    <div key={i} className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition cursor-pointer">
 
                         <div div className="w-14 h-14 rounded-full overflow-hidden transform hover:scale-105 transition-transform duration-200" >
                             <img src={chat.img} alt={chat.name} />
