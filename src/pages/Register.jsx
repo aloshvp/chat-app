@@ -88,10 +88,10 @@ const Register = () => {
     };
 
     return (
-        <div className="flex h-screen align-middle justify-center mt-25">
+        <div className="flex h-screen items-center justify-center bg-gradient-to-b from-[#4a4e91] to-[#6366f1]">
             <form onSubmit={handleSubmit}>
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-5 h-max">
-                    <legend className="fieldset-legend text-s">Register</legend>
+                    <h2 className="card-title mb-2">Register</h2>
 
                     <label className="label">Name</label>
                     <input type="text" className="input" placeholder="Name"

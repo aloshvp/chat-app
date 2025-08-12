@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { auth } from '../firebase';
 import { signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
 
     const navigate = useNavigate();
+
+    const { currentUser } = useContext(AuthContext);
+    console.log(currentUser);
+
+    const { displayName, photoURL } = currentUser;
 
     const handleLogout = () => {
         signOut(auth).then(() => {
@@ -25,10 +31,10 @@ const Navbar = () => {
             <div className='flex items-center justify-center gap-3'>
                 <div className="avatar avatar-online">
                     <div className="w-10 rounded-full">
-                        <img src="https://img.daisyui.com/images/profile/demo/gordon@192.webp" />
+                        <img src={photoURL} />
                     </div>
                 </div>
-                <h5 className='text-[#E3E7F1] text-[18px]'>John Norton</h5>
+                <h5 className='text-[#E3E7F1] text-[18px]'>{displayName}</h5>
             </div>
             <div>
                 <button className="btn btn-active bg-[#C6CBEF]" onClick={handleLogout}>Logout</button>

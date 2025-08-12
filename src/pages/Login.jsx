@@ -45,10 +45,10 @@ const Login = () => {
     };
 
     return (
-        <div className="flex h-screen align-middle justify-center mt-25">
+        <div className="flex h-screen items-center justify-center bg-gradient-to-b from-[#4a4e91] to-[#6366f1]">
             <form onSubmit={handleSubmit}>
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-                    <legend className="fieldset-legend">Login</legend>
+                    <h2 className="card-title mb-2">Login</h2>
 
                     <label className="label">Email</label>
                     <input
