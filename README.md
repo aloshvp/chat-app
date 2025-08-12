@@ -4,3 +4,4 @@
 - Install Sass
 - Tailwind css
 - DaisyUi
+- firebase
