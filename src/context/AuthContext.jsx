@@ -4,27 +4,19 @@ import { auth } from "../firebase";
 
 export const AuthContext = createContext();
 
-export const AuthContextProvide = ({ children }) => {
-
-    const [currentUser, setCurrentUser] = useState({});
+export const AuthContextProvider = ({ children }) => {
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
-        const unsub = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setCurrentUser(user);
-            }
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setCurrentUser(user || null);
         });
-
-        return () => {
-            unsub();
-        }
+        return () => unsubscribe();
     }, []);
 
     return (
         <AuthContext.Provider value={{ currentUser }}>
             {children}
         </AuthContext.Provider>
-    )
-
-
-}
+    );
+};
