@@ -1,6 +1,22 @@
 import React from 'react'
+import { auth } from '../firebase';
+import { signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        signOut(auth).then(() => {
+            navigate("/login")
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
+
+
+
     return (
         <div className='flex items-center p-4 justify-between shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]'>
             <div>
@@ -15,7 +31,7 @@ const Navbar = () => {
                 <h5 className='text-[#E3E7F1] text-[18px]'>John Norton</h5>
             </div>
             <div>
-                <button className="btn btn-active bg-[#C6CBEF]">Logout</button>
+                <button className="btn btn-active bg-[#C6CBEF]" onClick={handleLogout}>Logout</button>
             </div>
         </div>
     )
