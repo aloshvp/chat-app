@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import "./style.scss";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
+import Loading from "./components/Loading";
 
 function App() {
 
@@ -12,9 +13,7 @@ function App() {
     const { currentUser, loading } = useContext(AuthContext);
 
     if (loading) {
-      return <div>
-
-      </div>;
+      return <Loading />;
     }
 
     if (!currentUser) {

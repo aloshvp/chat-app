@@ -59,6 +59,9 @@ const Register = () => {
                 createdAt: serverTimestamp()
             });
 
+            //5️⃣ Store user chats in Firestore
+            await setDoc(doc(db, "userChats", userCredential.user.uid), {})
+
             // alert("Registration successful!");
             resetForm();
             navigate("/")
