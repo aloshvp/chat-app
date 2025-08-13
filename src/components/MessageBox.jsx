@@ -38,7 +38,7 @@ const MessageBox = ({ chatId = "" }) => {
                     onKeyDown={(e) => e.key === "Enter" && handleSendMsg()}
                 />
                 <button
-                    className="ml-3 p-2 bg-[#a7bcff] rounded-full hover:bg-[#8fa7ff] shadow-md transition"
+                    className="ml-3 p-2 bg-[#a7bcff] rounded-full hover:bg-[#8fa7ff] shadow-md transition cursor-pointer"
                     onClick={handleSendMsg}
                 >
                     <svg

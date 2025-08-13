@@ -4,6 +4,7 @@ import ChatNavbar from './ChatNavbar'
 import MessageBox from './MessageBox'
 import { ChatContext } from '../context/ChatContext'
 import { AuthContext } from '../context/AuthContext'
+import StartConversation from './StartConversation'
 
 const Chat = () => {
 
@@ -11,9 +12,9 @@ const Chat = () => {
     const { data } = useContext(ChatContext);
     const { displayName, photoURL } = data.user;
     const { chatId } = data;
-    console.log(currentUser);
-    console.log(data);
     const { photoURL: userImg } = currentUser;
+
+    if (chatId === "null") return <StartConversation />
 
     return (
         <div className="w-full h-full flex flex-col">
