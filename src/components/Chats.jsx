@@ -29,29 +29,37 @@ const Chats = () => {
     }
 
     return (
-        <div>
-            <div className="flex flex-col divide-y divide-[#9da0ce]/30">
+        <div className="overflowy-scroll">
+            <div className="flex flex-col divide-y divide-[#9da0ce]/30 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[#9da0ce]/50 scrollbar-track-transparent">
                 {Object.entries(chats)?.map(([chatId, chatData]) => (
                     <div
                         key={chatId}
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition cursor-pointer"
+                        className="flex flex-wrap sm:flex-nowrap items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition cursor-pointer"
                         onClick={() => handleSelect(chatData.userInfo)}
                     >
-                        <div className="w-14 h-14 rounded-full overflow-hidden transform hover:scale-105 transition-transform duration-200">
-                            <img src={chatData.userInfo.photoURL} alt={chatData.userInfo.displayName} />
+                        {/* Avatar */}
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden transform hover:scale-105 transition-transform duration-200 flex-shrink-0">
+                            <img
+                                src={chatData.userInfo.photoURL}
+                                alt={chatData.userInfo.displayName}
+                                className="w-full h-full object-cover"
+                            />
                         </div>
-                        <div className="flex flex-col justify-center">
-                            <span className="text-white font-medium">
+
+                        {/* User info */}
+                        <div className="flex flex-col justify-center min-w-0">
+                            <span className="text-white font-medium truncate">
                                 {chatData.userInfo.displayName}
                             </span>
-                            <p className="text-sm text-gray-300">
-                                {/* Replace with actual last message if available */}
+                            <p className="text-sm text-gray-300 truncate">
                                 Last message here...
                             </p>
                         </div>
                     </div>
                 ))}
             </div>
+
+
         </div >
     );
 };
