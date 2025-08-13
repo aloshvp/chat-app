@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const Search = () => {
     const [userName, setUserName] = useState("");
-    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState(null); // single user object
     const [error, setError] = useState(null);
 
     const { currentUser } = useContext(AuthContext);
@@ -13,7 +13,7 @@ const Search = () => {
     useEffect(() => {
         const delay = setTimeout(() => {
             if (userName.trim().length < 3) {
-                setUsers([]);
+                setUser(null);
                 setError(null);
                 return;
             }
@@ -27,64 +27,69 @@ const Search = () => {
         const q = query(
             collection(db, "users"),
             where("name", ">=", userName),
-            where("name", "<=", userName + "\uf8ff"), // matches names starting with input
+            where("name", "<=", userName + "\uf8ff"),
             orderBy("name"),
-            limit(10) // optional limit
+            limit(1) // only one result
         );
 
         try {
             const querySnapshot = await getDocs(q);
 
             if (querySnapshot.empty) {
-                setUsers([]);
+                setUser(null);
                 setError("User not found!");
             } else {
-                setUsers(querySnapshot.docs.map(doc => doc.data()));
+                setUser(querySnapshot.docs[0].data()); // take first doc
                 setError(null);
             }
         } catch (err) {
             console.error("Error searching user:", err);
             setError("Something went wrong.");
-            setUsers([]);
+            setUser(null);
         }
     };
 
     const handleSelect = async () => {
-        //check whether the group(chats in firestore) exists,if not create
+        if (!user) return;
+
         const combinedID =
-            currentUser.uid > users[0].uid ?
-                currentUser.uid + users[0].uid :
-                users[0].uid + currentUser.uid;
+            currentUser.uid > user.uid
+                ? currentUser.uid + user.uid
+                : user.uid + currentUser.uid;
+
         try {
             const res = await getDoc(doc(db, "chats", combinedID));
             if (!res.exists()) {
-                //create a chat in chats collection
-                await setDoc(doc(db, "chats", combinedID), { messages: [] })
+                // Create a chat
+                await setDoc(doc(db, "chats", combinedID), { messages: [] });
 
-                //create user chats
-                await updateDoc(doc(db, "userChats", users[0].uid),
-                    {
-                        [combinedID + ".userInfo"]: {
-                            uid: users[0].uid,
-                            displayName: users[0].name,
-                            photoURL: users[0].photoURL
-                        },
-                        [combinedID + ".date"]: serverTimestamp()
-                    })
+                // Update userChats for current user
+                await updateDoc(doc(db, "userChats", currentUser.uid), {
+                    [combinedID + ".userInfo"]: {
+                        uid: user.uid,
+                        displayName: user.name,
+                        photoURL: user.photoURL
+                    },
+                    [combinedID + ".date"]: serverTimestamp()
+                });
+
+                // Update userChats for other user
+                await updateDoc(doc(db, "userChats", user.uid), {
+                    [combinedID + ".userInfo"]: {
+                        uid: currentUser.uid,
+                        displayName: currentUser.displayName,
+                        photoURL: currentUser.photoURL
+                    },
+                    [combinedID + ".date"]: serverTimestamp()
+                });
             }
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
-        }
-        finally {
-            setUsers([]);
+        } finally {
+            setUser(null);
             setUserName("");
         }
-
-        // setUsers(null);
-        // setUserName("");
-        //create user chats
-    }
+    };
 
     return (
         <div>
@@ -102,16 +107,17 @@ const Search = () => {
 
             {error && <span className="text-red-500 p-4 block">{error}</span>}
 
-            {users.length > 0 && (
+            {user && (
                 <div className="flex flex-col border-t border-[#9da0ce] p-5 gap-3">
-                    {users?.map((user, index) => (
-                        <div key={index} className="avatar flex items-center gap-3 border-b border-[#9da0ce] pb-3" onClick={handleSelect}>
-                            <div className="w-14 rounded-full overflow-hidden">
-                                <img src={user.photoURL} alt={user.name} />
-                            </div>
-                            <p className="text-[#fff]">{user.name}</p>
+                    <div
+                        className="avatar flex items-center gap-3 border-b border-[#9da0ce] pb-3 cursor-pointer"
+                        onClick={handleSelect}
+                    >
+                        <div className="w-14 rounded-full overflow-hidden">
+                            <img src={user.photoURL} alt={user.name} />
                         </div>
-                    ))}
+                        <p className="text-[#fff]">{user.name}</p>
+                    </div>
                 </div>
             )}
         </div>
