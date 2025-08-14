@@ -1,10 +1,10 @@
-import { arrayUnion, doc, updateDoc, Timestamp } from "firebase/firestore";
+import { arrayUnion, doc, updateDoc, Timestamp, serverTimestamp } from "firebase/firestore";
 import React, { useState, useContext } from "react";
 import { db } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { AuthContext } from "../context/AuthContext"; // make sure path is correct
 
-const MessageBox = ({ chatId = "" }) => {
+const MessageBox = ({ chatId = "", dataUid = "" }) => {
     const { currentUser } = useContext(AuthContext);
     const [text, setText] = useState("");
 
@@ -22,6 +22,19 @@ const MessageBox = ({ chatId = "" }) => {
                 status: "sent"
             })
         });
+
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+            [chatId + ".lastMessage"]: {
+                text
+            },
+            [chatId + ".date"]: serverTimestamp()
+        })
+        await updateDoc(doc(db, "userChats", dataUid), {
+            [chatId + ".lastMessage"]: {
+                text
+            },
+            [chatId + ".date"]: serverTimestamp()
+        })
 
         setText("");
     };

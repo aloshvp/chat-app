@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { useState } from 'react';
 import { auth, db } from '../firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Register = () => {
 
@@ -118,6 +118,9 @@ const Register = () => {
                     <button className="btn btn-neutral mt-2" disabled={loading}>
                         {loading ? "Registering..." : "Register"}
                     </button>
+                    <p className="flex justify-center mt-2 cursor-pointer text-blue-500">
+                        Don't have an account? <Link to='/login'>Login</Link>
+                    </p>
                 </fieldset>
             </form>
         </div>

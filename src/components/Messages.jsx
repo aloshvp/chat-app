@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 
-const Messages = ({ chatId = "", userImg = "", photoURL = "" }) => {
+const Messages = ({ chatId = "", userImg = "" }) => {
     const [messages, setMessages] = useState([]);
     const { currentUser } = useContext(AuthContext);
 

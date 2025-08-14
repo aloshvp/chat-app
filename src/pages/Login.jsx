@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -77,11 +77,11 @@ const Login = () => {
                     </button>
 
                     <p className="flex justify-center mt-2 cursor-pointer text-blue-500">
-                        Don't have an account? Register
+                        Don't have an account? <Link to='/register'>Register</Link>
                     </p>
                 </fieldset>
             </form>
-        </div>
+        </div >
     );
 };
 

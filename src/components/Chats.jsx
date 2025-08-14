@@ -31,7 +31,7 @@ const Chats = () => {
     return (
         <div className="overflowy-scroll">
             <div className="flex flex-col divide-y divide-[#9da0ce]/30 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[#9da0ce]/50 scrollbar-track-transparent">
-                {Object.entries(chats)?.map(([chatId, chatData]) => (
+                {Object?.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map(([chatId, chatData]) => (
                     <div
                         key={chatId}
                         className="flex flex-wrap sm:flex-nowrap items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition cursor-pointer"
@@ -40,8 +40,8 @@ const Chats = () => {
                         {/* Avatar */}
                         <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden transform hover:scale-105 transition-transform duration-200 flex-shrink-0">
                             <img
-                                src={chatData.userInfo.photoURL}
-                                alt={chatData.userInfo.displayName}
+                                src={chatData?.userInfo?.photoURL}
+                                alt={chatData?.userInfo?.displayName}
                                 className="w-full h-full object-cover"
                             />
                         </div>
@@ -49,10 +49,10 @@ const Chats = () => {
                         {/* User info */}
                         <div className="flex flex-col justify-center min-w-0">
                             <span className="text-white font-medium truncate">
-                                {chatData.userInfo.displayName}
+                                {chatData?.userInfo?.displayName}
                             </span>
                             <p className="text-sm text-gray-300 truncate">
-                                Last message here...
+                                {chatData?.lastMessage?.text}
                             </p>
                         </div>
                     </div>

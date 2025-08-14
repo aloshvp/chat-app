@@ -10,9 +10,11 @@ const Chat = () => {
 
     const { currentUser } = useContext(AuthContext);
     const { data } = useContext(ChatContext);
-    const { displayName, photoURL } = data.user;
-    const { chatId } = data;
+    const { displayName } = data.user;
+    const { chatId, user } = data;
     const { photoURL: userImg } = currentUser;
+
+    console.log(data);
 
     if (chatId === "null") return <StartConversation />
 
@@ -20,9 +22,9 @@ const Chat = () => {
         <div className="w-full h-full flex flex-col">
             <ChatNavbar displayName={displayName} />
             <div className="flex-1 overflow-y-auto">
-                <Messages chatId={chatId} userImg={userImg} photoURL={photoURL} />
+                <Messages chatId={chatId} userImg={userImg} />
             </div>
-            <MessageBox chatId={chatId} />
+            <MessageBox chatId={chatId} dataUid={user.uid} />
         </div >
     )
 }
